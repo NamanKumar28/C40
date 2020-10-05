@@ -27,6 +27,7 @@ class Game {
     car2 = createSprite(300,200)
     car3 = createSprite(500,200)
     car4 = createSprite(700,200)
+
     cars = [car1,car2,car3,car4]
 
     car1.addImage(car1Image);
@@ -37,36 +38,27 @@ class Game {
 
   play(){
   form.hide()
-  //textSize (30);
- // text("gameStart", 120,100)
   Player.getPlayerInfo() 
  console.log(allPlayers)
   if(allPlayers !== undefined){
     background(backgroundImage);
     image (track,0,-displayHeight*4,displayWidth,displayHeight*5)
-    //var displayPosition = 130
     var index = 0;
     var x = 220;
     var y;
     for(var plr in allPlayers){
       index = index+1; 
-      x = x+220
+      x = x+230
       y = displayHeight-allPlayers[plr].distance;
       cars[index-1].x = x;
       cars[index-1].y = y;
       if(index === player.index){
-        cars[index-1].shapeColor = "red"
+        stroke(10)
+        fill("red")
+        ellipse(x,y,60,60)
         camera.position.x = displayWidth/2
         camera.position.y = cars[index-1].y
       } 
-     /* if(plr === "player"+ player.index)
-        fill("red")
-      else
-        fill("black")
-
-      // displayPosition += 30
-        textSize (15);
-        text(allPlayers[plr].name+ ": "+ allPlayers[plr].distance, 120,displayPosition)*/
     }
   } 
   if(keyIsDown(UP_ARROW) && player.index !== null){
