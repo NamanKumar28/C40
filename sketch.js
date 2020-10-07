@@ -26,7 +26,7 @@ function setup(){
 }
 
 function draw(){
-  console.log(playerCount);
+  //console.log(playerCount);
   if(playerCount === 4){
     game.update(1);
   }
@@ -35,6 +35,6 @@ function draw(){
     game.play();
   }
   if(gameState === 2){
-    console.log("game ended")
+    game.end()
   }
 }

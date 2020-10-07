@@ -10,7 +10,7 @@ class Game {
   }
 
   update(state){
-    console.log("HI")
+    //console.log("HI")
     database.ref('/').update({
       gameState: state
     });
@@ -38,8 +38,9 @@ class Game {
 
   play(){
   form.hide()
-  Player.getPlayerInfo() 
- console.log(allPlayers)
+  Player.getPlayerInfo()
+  player.getCarsAtEnd() 
+ //console.log(allPlayers)
   if(allPlayers !== undefined){
     background(backgroundImage);
     image (track,0,-displayHeight*4,displayWidth,displayHeight*5)
@@ -57,19 +58,27 @@ class Game {
         fill("red")
         ellipse(x,y,60,60)
         camera.position.x = displayWidth/2
+        console.log(cars[index-1].y)
         camera.position.y = cars[index-1].y
       } 
     }
   } 
   if(keyIsDown(UP_ARROW) && player.index !== null){
-    player.distance += 50 
+    player.distance += 10 
     player.update();
   }
-  if(player.distance >4000){
+  if(player.distance >4250){
     gameState = 2
+    player.rank += 1
+    Player.updateCarsAtEnd(player.rank)
 
   }
   drawSprites();
+  }
+
+  end(){
+    console.log("game ended")
+    console.log(player.rank)
   }
 }
 
